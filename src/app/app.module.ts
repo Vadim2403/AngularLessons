@@ -13,7 +13,7 @@ import { EventItemComponent } from './events/event-list/event-item/event-item.co
 import { RequirementEditComponent } from './requirements/requirement-edit/requirement-edit.component';
 import { RequiremntItemComponent } from './requirements/requiremnt-item/requiremnt-item.component';
 import { AddEventComponent } from './events/add-event/add-event.component';
-import { FormsModule } from "@Angular/forms";
+import { FormsModule } from "@angular/forms";
 import { RequireAddComponent } from './requirements/require-add/require-add.component';
 import { EventStartComponent } from './events/event-start/event-start.component';
 import { Page404Component } from './page404/page404.component';
