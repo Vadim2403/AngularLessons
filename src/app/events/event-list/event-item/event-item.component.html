@@ -1,10 +1,10 @@
 
-<a href="#" class="list-group">
+<a [routerLink]="[index]" class="list-group">
     <h4 class="list-group-heading">
         {{event.name}}
     </h4>
-    <p class="list-group-item-text">
-        {{event.description}}
-    </p>
     <img class="img-fluid" [src]="event.image" alt="">
+  
 </a>
+<button class="btn btn-info" (click)="removeObj()">Delete</button>
+<button class="btn btn-info" (click)="sendItem()" [routerLink]="[link]">Edit</button>

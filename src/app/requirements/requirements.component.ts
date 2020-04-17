@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Require } from "../requirements/requireModel";
+import { RequireService } from './require.service';
 @Component({
   selector: 'app-requirements',
   templateUrl: './requirements.component.html',
@@ -7,13 +8,18 @@ import { Require } from "../requirements/requireModel";
 })
 export class RequirementsComponent implements OnInit {
 
-  requires: Require[] = [
-    new Require("Require 1", "promise and fetch"),
-    new Require("Require 2", "list in HTML")
-  ]
-  constructor() { }
 
+  temp: Require;
+  constructor(private requireSelected: RequireService) { }
+  requires: Require[];
   ngOnInit(): void {
+    this.requireSelected.requireSelected.subscribe((require:Require) => {
+      this.temp = require;
+    })
+    this.requires = this.requireSelected.getRequires();
+    this.requireSelected.reqUpdate.subscribe((requires: Require[]) => {
+      this.requires = requires;
+    })
   }
 
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Event } from "../eventModel";
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-event-list',
@@ -8,14 +9,17 @@ import { Event } from "../eventModel";
 })
 export class EventListComponent implements OnInit {
 
-  events: Event[] = [
-    new Event("Course JS", "promise and fetch", "https://i.ytimg.com/vi/IHjzyhjKxtc/maxresdefault.jpg"),
-    new Event("HTML CSS", "list in HTML", "https://o7planning.org/ru/11983/cache/images/i/21723546.png"),
-    new Event("React", "work with routing components","https://repository-images.githubusercontent.com/19872456/05dca500-f010-11e9-9588-a96554294e4e"),
-  ]
-  constructor() { }
+  @Output() eventSelected = new EventEmitter<Event>();
+  constructor(private eventService:EventService) { }
+  
+  events: Event[];
 
   ngOnInit(): void {
+    this.events = this.eventService.getEvents();
+    this.eventService.eventUpdate.subscribe((events: Event[]) => {
+      this.events = events;
+    })
   }
+
 
 }
